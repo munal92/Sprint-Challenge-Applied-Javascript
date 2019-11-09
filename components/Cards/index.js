@@ -24,10 +24,26 @@ const axiosPromise2 = axios.get('https://lambda-times-backend.herokuapp.com/arti
 console.log('articles', axiosPromise2);
 
 axiosPromise2.then(response => {
-        const dataApi2 = response.data.articles.bootstrap;
+        const dataApi2 = response.data.articles;
         console.log('dataArticles', dataApi2);
         
-        dataApi2.forEach(element => {
+        dataApi2.bootstrap.forEach(element => {
+            const newCard = createCard(element);
+            cards.appendChild(newCard);
+        });
+        dataApi2.javascript.forEach(element => {
+            const newCard = createCard(element);
+            cards.appendChild(newCard);
+        });
+        dataApi2.jquery.forEach(element => {
+            const newCard = createCard(element);
+            cards.appendChild(newCard);
+        });
+        dataApi2.technology.forEach(element => {
+            const newCard = createCard(element);
+            cards.appendChild(newCard);
+        });
+        dataApi2.node.forEach(element => {
             const newCard = createCard(element);
             cards.appendChild(newCard);
         });
@@ -68,7 +84,10 @@ function createCard (cardInf){
 
 
 
-
+    headlineDiv.textContent = cardInf.headline;
+   // authorDiv.textContent = cardInf.authorName;
+  authorSpan .textContent = cardInf.authorName;
+    imgAuthr.src = cardInf.authorPhoto;
 
     
 
@@ -76,3 +95,26 @@ function createCard (cardInf){
     return cardDiv ;
 }
 
+// <div class="card">
+//   <div class="headline">{Headline of article}</div>
+//   <div class="author">
+//     <div class="img-container">
+//       <img src={url of authors image} />
+//     </div>
+//     <span>By {authors name}</span>
+//   </div>
+// </div>
+
+// const cardArticleE = document.querySelector('.cards-container');
+// cardArticleE.addEventListener("mouseenter", () => {
+//     cardArticleE.style.transform="scale(1.2)";
+//     cardArticleE.style.transition="all 0.3s";
+//       })
+      
+      
+//       // add an event listener on multiple items.
+      
+//       cardArticleE.addEventListener("mouseleave", () => {
+//         cardArticleE.style.transform="scale(1.0)";
+//         cardArticleE.style.transition="all 0.9s";
+//       })
